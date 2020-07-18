@@ -1,0 +1,35 @@
+<style>
+    body {
+  background-image: url('https://paperpull.com/wp-content/uploads/2018/10/latest-artwork-wallpaper-of-shooting-stars.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: whitesmoke;
+    }
+    h1 {
+        margin-top: 250px;
+    }
+    ul {
+        text-align: center;
+        list-style-position: inside;
+    }
+</style>
+
+<h1 style="padding-left:50px; text-align: center" > What-is-due?</h1>
+
+<ul style="text-align: center">
+    {% for todo_item in all_items %}
+        <li style="text-align: center"> {{  todo_item.content }}</li>
+        <form action="/deleteTodo/{{ todo_item.id }}/"
+              method="post" style>{% csrf_token %}
+            <input type="submit" value="Delete"/>
+        </form>
+    {% endfor %}
+</ul>
+
+<!-- This form sends post request to URL, collects the texts and adds it to the list -->
+<form style="text-align: center; padding-left: 50px " action="/addTodo/" method="post">{% csrf_token %}
+    <input type="text" name="content"/>
+    <input type="submit" value="Add"/>
+</form>
+
+<h6 style="text-align: center; padding-left: 50px"> Created by Berker Erdini</h6>
